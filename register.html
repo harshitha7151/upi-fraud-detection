@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TransactFlow – Register</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="premium-auth-body">
+
+<div class="premium-container">
+
+    <!-- LEFT PANEL (Same as login) -->
+    <div class="left-panel">
+        <img src="assets/logo.png" class="hero-logo">
+        <h1 class="hero-title">TransactFlow</h1>
+        <p class="hero-sub">Smart • Secure • Swift</p>
+        <p class="hero-mini">Simulation Only – No Real UPI Data</p>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <div class="glass-card">
+
+            <h2 class="glass-title">Create Demo Account</h2>
+            <p class="glass-sub">Use fake details only. This is a simulation.</p>
+
+            <form id="registerForm" class="glass-form">
+
+                <label>Full Name</label>
+                <input type="text" id="regName" placeholder="Enter your name" required>
+
+                <label>Account Number (Fake)</label>
+                <input type="text" id="regAccount" placeholder="Create any fake account number" required>
+
+                <label>PIN (Fake)</label>
+                <input type="password" id="regPin" placeholder="Create a fake 4-digit PIN" required>
+
+                <button class="glass-btn">Register</button>
+
+            </form>
+
+            <div class="glass-switch" style="margin-top: 20px;">
+                <p>Already have an account?</p>
+                <a href="login.html" class="switch-btn">Login</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="scripts/auth.js"></script>
+
+</body>
+</html>

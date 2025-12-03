@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TransactFlow – Home</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="app-body">
+
+<div class="phone-frame">
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="user-info">
+            <div class="avatar-circle glow-avatar" id="avatarCircle"></div>
+            <div>
+                <p class="user-name" id="displayUserName"></p>
+                <p class="user-mail" id="displayUserMail"></p>
+            </div>
+        </div>
+
+        <div class="top-actions">
+            <span class="sim-pill">SIMULATION ONLY</span>
+        </div>
+    </header>
+
+    <main class="screen-content">
+
+        <!-- Balance -->
+        <section class="card balance-card">
+            <p class="balance-label">Available Balance</p>
+            <p class="balance-amount">₹ 5,000.00</p>
+        </section>
+
+        <!-- Pay Contacts -->
+        <section class="card section-card">
+            <p class="section-title">Pay Contacts</p>
+            <div class="contacts-row">
+                <div class="contact-bubble green">
+                    <span>₹</span>
+                    <p>Priya</p>
+                </div>
+                <div class="contact-bubble green">
+                    <span>₹</span>
+                    <p>Amit</p>
+                </div>
+                <div class="contact-bubble grey">
+                    <span>A</span>
+                    <p>Anil</p>
+                </div>
+                <div class="contact-bubble grey">
+                    <span>+</span>
+                    <p>More</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pay Options -->
+        <section class="card section-card">
+            <p class="section-title">Pay</p>
+
+            <div class="pay-options-grid">
+                <a href="pages/pay.html" class="pay-option">
+                    <div class="pay-icon">
+                        <img src="assets/icons/send.png">
+                    </div>
+                    <p>UPI ID / Bank</p>
+                </a>
+
+                <div class="pay-option disabled">
+                    <div class="pay-icon"><span>QR</span></div>
+                    <p>Scan QR</p>
+                </div>
+
+                <div class="pay-option disabled">
+                    <div class="pay-icon"><span>👥</span></div>
+                    <p>Contact</p>
+                </div>
+
+                <a href="pages/history.html" class="pay-option">
+                    <div class="pay-icon">
+                        <img src="assets/icons/history.png">
+                    </div>
+                    <p>History</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <a href="pages/pay.html" class="primary-cta">Proceed to Pay</a>
+
+        <p class="disclaimer">
+            This is a simulation. No real UPI or banking involved.
+        </p>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="pages/pay.html" class="nav-item">Pay</a>
+        <a href="pages/history.html" class="nav-item">History</a>
+    </nav>
+
+</div>
+
+<script src="scripts/app.js"></script>
+
+</body>
+</html>
+
