@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>TransactFlow – Home</title>
-    <link rel="stylesheet" href="styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles/style.css') }}">
 </head>
 
 <body class="app-body">
@@ -16,8 +19,8 @@
         <div class="user-info">
             <div class="avatar-circle glow-avatar" id="avatarCircle"></div>
             <div>
-                <p class="user-name" id="displayUserName"></p>
-                <p class="user-mail" id="displayUserMail"></p>
+                <p class="user-name">TransactFlow</p>
+                <p class="user-mail">upi-simulation</p>
             </div>
         </div>
 
@@ -62,9 +65,10 @@
             <p class="section-title">Pay</p>
 
             <div class="pay-options-grid">
-                <a href="pages/pay.html" class="pay-option">
+
+                <a href="/pay" class="pay-option">
                     <div class="pay-icon">
-                        <img src="assets/icons/send.png">
+                        <img src="{{ url_for('static', filename='assets/icons/send.png') }}">
                     </div>
                     <p>UPI ID / Bank</p>
                 </a>
@@ -79,32 +83,35 @@
                     <p>Contact</p>
                 </div>
 
-                <a href="pages/history.html" class="pay-option">
+                <a href="/history-page" class="pay-option">
                     <div class="pay-icon">
-                        <img src="assets/icons/history.png">
+                        <img src="{{ url_for('static', filename='assets/icons/history.png') }}">
                     </div>
                     <p>History</p>
                 </a>
+
             </div>
         </section>
 
         <!-- CTA -->
-        <a href="pages/pay.html" class="primary-cta">Proceed to Pay</a>
+        <a href="/pay" class="primary-cta">Proceed to Pay</a>
 
         <p class="disclaimer">
             This is a simulation. No real UPI or banking involved.
         </p>
+
     </main>
 
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item active">Home</a>
-        <a href="pages/pay.html" class="nav-item">Pay</a>
-        <a href="pages/history.html" class="nav-item">History</a>
+        <a href="/home" class="nav-item active">Home</a>
+        <a href="/pay" class="nav-item">Pay</a>
+        <a href="/history-page" class="nav-item">History</a>
     </nav>
 
 </div>
 
-<script src="scripts/app.js"></script>
+<!-- JS -->
+<script src="{{ url_for('static', filename='scripts/app.js') }}"></script>
 
 </body>
 </html>

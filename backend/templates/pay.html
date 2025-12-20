@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TransactFlow – Pay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+
+<body class="app-body">
+
+<div class="phone-frame">
+
+<header class="top-bar">
+    <div class="user-info">
+        <div class="avatar-circle glow-avatar">TF</div>
+        <div>
+            <p class="user-name">UPI Payment</p>
+            <p class="user-mail">upi-simulation</p>
+        </div>
+    </div>
+    <span class="sim-pill">SIMULATION ONLY</span>
+</header>
+
+<main class="screen-content">
+
+<section class="card balance-card">
+    <p class="balance-label">Demo Wallet</p>
+    <p class="balance-amount">₹ 25,000.00</p>
+</section>
+
+<section class="card section-card">
+
+<p class="section-title">UPI Payment Simulation</p>
+
+<form id="payForm" class="pay-form">
+
+    <label>Sender UPI (Fake)</label>
+    <input id="senderUpi" required>
+
+    <label>Receiver UPI</label>
+    <input id="receiverUpi" required>
+
+    <label>Amount</label>
+    <input id="amount" type="number" min="1" required>
+
+    <label class="checkbox-row">
+        <input type="checkbox" id="simulateVpn">
+        Simulate VPN
+    </label>
+
+    <button class="primary-cta" style="margin-top:16px;">
+        Pay (Simulation)
+    </button>
+
+</form>
+
+</section>
+
+<div id="resultSection" class="result hidden">
+    <div class="result-card">
+        <h3 id="resultTitle"></h3>
+        <p id="fraudReason" class="fraud-text"></p>
+    </div>
+</div>
+
+</main>
+
+<nav class="bottom-nav">
+    <a href="/home" class="nav-item">Home</a>
+    <a href="/pay" class="nav-item active">Pay</a>
+    <a href="/history-page" class="nav-item">History</a>
+</nav>
+
+</div>
+
+<script src="{{ url_for('static', filename='scripts/app.js') }}"></script>
+</body>
+</html>
+

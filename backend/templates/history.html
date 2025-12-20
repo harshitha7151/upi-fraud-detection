@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TransactFlow – History</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+
+<body class="app-body">
+
+<div class="phone-frame">
+
+<header class="top-bar">
+    <div class="user-info">
+        <div class="avatar-circle glow-avatar">TF</div>
+        <div>
+            <p class="user-name">History</p>
+            <p class="user-mail">Recent transactions</p>
+        </div>
+    </div>
+    <span class="sim-pill">SIMULATION ONLY</span>
+</header>
+
+<main class="screen-content">
+
+<section class="card section-card">
+
+    <p class="section-title">Transaction History</p>
+
+    <ul id="historyList" class="txn-list"></ul>
+
+    <p id="noHistoryMsg" class="empty-msg hidden">
+        No transactions yet.
+    </p>
+
+</section>
+
+</main>
+
+<nav class="bottom-nav">
+    <a href="/home" class="nav-item">Home</a>
+    <a href="/pay" class="nav-item">Pay</a>
+    <a href="/history-page" class="nav-item active">History</a>
+</nav>
+
+</div>
+
+<script src="{{ url_for('static', filename='scripts/app.js') }}"></script>
+</body>
+</html>
+

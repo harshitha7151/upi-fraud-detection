@@ -3,55 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>TransactFlow – Login</title>
-    <link rel="stylesheet" href="styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles/style.css') }}">
 </head>
 
 <body class="premium-auth-body">
 
 <div class="premium-container">
 
-    <!-- LEFT SECTION - BIG BRAND PANEL -->
+    <!-- LEFT SECTION -->
     <div class="left-panel">
-        <img src="assets/logo.png" class="hero-logo">
+        <img src="{{ url_for('static', filename='assets/logo.png') }}"
+             class="hero-logo">
         <h1 class="hero-title">TransactFlow</h1>
         <p class="hero-sub">Smart • Secure • Swift</p>
         <p class="hero-mini">Simulation Only – No Real UPI Data</p>
     </div>
 
-    <!-- RIGHT SECTION - LOGIN CARD -->
+    <!-- RIGHT SECTION -->
     <div class="right-panel">
-
         <div class="glass-card">
 
             <h2 class="glass-title">Welcome Back</h2>
             <p class="glass-sub">Login to your demo UPI dashboard</p>
 
-            <form id="loginForm" class="glass-form">
+            <!-- FORM (demo only) -->
+            <form class="glass-form" action="/home">
 
                 <label>Account Number (Fake)</label>
-                <input type="text" id="loginAccount" placeholder="Enter fake account number" required>
+                <input type="text" placeholder="Enter fake account number" required>
 
                 <label>PIN (Fake)</label>
-                <input type="password" id="loginPin" placeholder="Enter fake 4-digit PIN" required>
+                <input type="password" placeholder="Enter fake 4-digit PIN" required>
 
                 <button class="glass-btn">Login</button>
 
             </form>
 
-            <div class="glass-switch" style="margin-top: 18px;">
-    <p>New user?</p>
-    <a href="register.html" class="switch-btn">Create Account</a>
-</div>
+            <div class="glass-switch" style="margin-top:18px;">
+                <p>New user?</p>
+                <a href="/register" class="switch-btn">Create Account</a>
+            </div>
 
         </div>
-
     </div>
 
 </div>
 
-<script src="scripts/auth.js"></script>
-
 </body>
 </html>
+
 
