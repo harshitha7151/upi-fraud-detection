@@ -9,6 +9,7 @@ import tensorflow as tf
 import random
 from datetime import datetime
 
+
 # =====================================================
 # APP SETUP
 # =====================================================
@@ -31,13 +32,16 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # =====================================================
 # MAIL CONFIG
 # =====================================================
+MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+
 app.config.update(
     MAIL_SERVER="smtp.gmail.com",
     MAIL_PORT=587,
     MAIL_USE_TLS=True,
-    MAIL_USERNAME="transactflow230@gmail.com",
-    MAIL_PASSWORD="iiazghtkocwzahkl",   # Gmail App Password
-    MAIL_DEFAULT_SENDER="transactflow230@gmail.com"
+    MAIL_USERNAME=MAIL_USERNAME,
+    MAIL_PASSWORD=MAIL_PASSWORD,
+    MAIL_DEFAULT_SENDER=MAIL_USERNAME
 )
 
 db = SQLAlchemy(app)
