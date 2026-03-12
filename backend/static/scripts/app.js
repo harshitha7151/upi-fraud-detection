@@ -1,77 +1,129 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ---------------------------
-    // PAY PAGE LOGIC
-    // ---------------------------
+    /* ===============================
+       PAY PAGE LOGIC
+    =============================== */
+
     const payForm = document.getElementById("payForm");
 
     if (payForm) {
+
+        const loadingSection = document.getElementById("loadingSection");
+        const resultSection = document.getElementById("resultSection");
+        const resultTitle = document.getElementById("resultTitle");
+        const fraudReason = document.getElementById("fraudReason");
+        const resultVideo = document.getElementById("resultVideo");
+
         payForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            // SIMPLE PAYLOAD
+            // Reset UI
+            resultSection.classList.add("hidden");
+            loadingSection.classList.remove("hidden");
+
+            const amountValue = Number(document.getElementById("amount").value);
+            const vpnFlag = document.getElementById("simulateVpn").checked ? 1 : 0;
+
+            // ✅ REALISTIC, DYNAMIC PAYLOAD
             const payload = {
-                sender: document.getElementById("senderUpi").value,
-                receiver: document.getElementById("receiverUpi").value,
-                amount: Number(document.getElementById("amount").value),
-                country: "India",              // FIXED
-                vpn: document.getElementById("simulateVpn").checked,
-                velocity: 1,
+                Amount: amountValue,
                 hour: new Date().getHours(),
-                shared_device: false,
-                shared_ip: false
+
+                velocity: amountValue > 7000 ? 5 : amountValue > 3000 ? 3 : 1,
+                shared_device: amountValue > 4000 ? 1 : 0,
+                shared_ip: 0,
+                vpn: vpnFlag,
+
+                // Temporal sequence for LSTM
+                sequence: [
+                    Math.random() * 20,
+                    Math.random() * 20,
+                    Math.random() * 20,
+                    Math.random() * 20,
+                    amountValue
+                ]
             };
 
-            console.log("SENDING:", payload); // DEBUG
+            console.log("SENDING:", payload);
 
-            fetch("http://127.0.0.1:5000/predict", {
+            fetch("/predict", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify(payload)
             })
             .then(res => res.json())
             .then(data => {
-                document.getElementById("resultSection").classList.remove("hidden");
-                document.getElementById("resultTitle").textContent = data.decision;
-                document.getElementById("fraudReason").textContent = data.reason;
+
+                // Hide loading
+                loadingSection.classList.add("hidden");
+
+                // Show result
+                resultSection.classList.remove("hidden");
+
+                resultTitle.textContent = data.decision;
+                fraudReason.textContent = "Risk Score: " + data.final_score;
+
+                // Video based on decision
+                if (data.decision === "Allow") {
+                    resultVideo.src = "/static/assets/success.mp4";
+                } else {
+                    resultVideo.src = "/static/assets/failure.mp4";
+                }
+
+                resultVideo.currentTime = 0;
+                resultVideo.play();
             })
             .catch(err => {
                 console.error("FETCH ERROR:", err);
-                alert("Backend not reachable");
+                loadingSection.classList.add("hidden");
+                alert("Backend not reachable. Is Flask running?");
             });
         });
     }
 
-    // ---------------------------
-    // HISTORY PAGE LOGIC
-    // ---------------------------
+    /* ===============================
+       HISTORY PAGE LOGIC
+    =============================== */
+
     const historyList = document.getElementById("historyList");
-    const noHistory = document.getElementById("noHistoryMsg");
+    const noHistoryMsg = document.getElementById("noHistoryMsg");
 
     if (historyList) {
-        fetch("http://127.0.0.1:5000/history")
+        fetch("/history")
             .then(res => res.json())
             .then(data => {
+
                 if (data.length === 0) {
-                    noHistory.classList.remove("hidden");
+                    noHistoryMsg.classList.remove("hidden");
                     return;
                 }
 
-                noHistory.classList.add("hidden");
+                noHistoryMsg.classList.add("hidden");
 
                 data.forEach(txn => {
                     const li = document.createElement("li");
                     li.className = "txn-item";
+
                     li.innerHTML = `
-                        <p><b>₹${txn.amount}</b> → ${txn.receiver}</p>
-                        <small>${txn.time} | ${txn.decision}</small>
+                        <div class="txn-main">
+                            <p class="txn-amount">₹${txn.amount}</p>
+                            <p class="txn-meta">${txn.time}</p>
+                        </div>
+                        <div class="${
+                            txn.decision === "Allow"
+                                ? "txn-status-success"
+                                : "txn-status-fraud"
+                        }">
+                            ${txn.decision}
+                        </div>
                     `;
+
                     historyList.appendChild(li);
                 });
             })
-            .catch(err => console.error(err));
+            .catch(err => console.error("History fetch error:", err));
     }
 
 });
-
-
